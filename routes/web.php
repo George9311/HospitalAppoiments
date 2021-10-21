@@ -16,7 +16,6 @@ use App\Http\Controllers\AdminController;
 
 
 Route::get('/',[HomeController::class,'index']);
-
 Route::get('/home',[HomeController::class,'redirect']);
 
 
@@ -24,22 +23,19 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
+
 Route::get('/add_doctor_view',[AdminController::class,'addview']);
 Route::get('/alldoctors',[AdminController::class,'alldoctors']);
-
-
 Route::post('/upload_doctor',[AdminController::class,'upload']);
 
+
 Route::post('/appointment',[HomeController::class,'appointment']);
-
 Route::get('/myappointment',[HomeController::class,'myappointment']);
-
 Route::get('/cancel_appoint/{id}',[HomeController::class,'cancel_appoint']);
 
+
 Route::get('/showappointment',[AdminController::class,'showappointment']);
-
 Route::get('/accept/{id}',[AdminController::class,'accept']);
-
 Route::get('/cancel/{id}',[AdminController::class,'cancel']);
 
 
@@ -47,9 +43,7 @@ Route::get('/cancel/{id}',[AdminController::class,'cancel']);
 Route::get('/deletedoctor/{id}',[AdminController::class,'deleteDoctor']);
 Route::get('/updatedoctor/{id}',[AdminController::class,'updateDoctor']);
 Route::post('/editdoctor/{id}',[AdminController::class,'editDoctor']);
-
 Route::get('/emailtouser/{id}',[AdminController::class,'emailToUser']);
-
 Route::post('/sendemail/{id}',[AdminController::class,'sendemail']);
 
 
