@@ -10,14 +10,31 @@ use Notification;
 
 use App\Notifications\MyFirstNotification;
 
+use Illuminate\Support\Facades\Auth;
+
 class AdminController extends Controller
 {
     //
     public function addview()
-    {
+    {   
+        if(Auth::id()){
 
-        return view('admin.add_doctor');
+            if(Auth::user()->usertype ==1){
 
+              return view('admin.add_doctor');
+
+            }
+            else{
+
+                return redirect()->back();
+
+            }
+
+        }
+        else{
+
+            return redirect('login');
+        }
     }
 
 
@@ -82,6 +99,22 @@ class AdminController extends Controller
 
     public function alldoctors(){
 
+        if(Auth::id()){
+
+            if(Auth::usertype == 1){
+
+                return view('admin.alldoctors');
+            }else{
+
+                return redirect()->back();
+
+            }
+                
+        }
+        else{
+
+            return redirect('login');
+        }
         
         $data = doctor::all();
         return view('admin.alldoctors', compact('data'));
